@@ -7,17 +7,17 @@ const {userAuth, adminAuth, superAdminAuth} = require("../middleware/roleAuthori
 const router = express.Router();
 
 // get all user
-router.get("/getAllUser",verifyToken,adminAuth,superAdminAuth, getUser.getAllUser )
+router.get("/getAllUser", getUser.getAllUser )
 //get document
-router.get("/getUser",userAuth, getUser.getDocument)
+router.get("/getUser", getUser.getDocument)
 
 
 //user registration route
 router.post("/register" , getUser.register)
 // //Admin registration route
-router.post("/register-admin",verifyToken ,superAdminAuth, getUser.adminRegister)
+router.post("/register-admin", getUser.adminRegister)
 // //super Admin registration route
-router.post("/register-superAdmin",verifyToken, superAdminAuth , getUser.superAdminRegister)
+router.post("/register-superAdmin" , getUser.superAdminRegister)
 
 // //user login route
 router.post("/login" , getUser.login)
@@ -28,9 +28,9 @@ router.post("/login-super-admin" , getUser.login)
 
 
 //patch
-router.patch("/update",verifyToken,userAuth, getUser.updateProfile)
+router.patch("/update", getUser.updateProfile)
 //delete
-router.post("/delete" ,verifyToken,  getUser.deleteProfile)
+router.post("/delete" ,  getUser.deleteProfile)
 
 // //profile
 // router.get("profile", profile)
