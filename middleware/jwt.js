@@ -23,6 +23,6 @@ const validateToken = async function (req, res, next){
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 module.exports = validateToken;
