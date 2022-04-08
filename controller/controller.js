@@ -239,10 +239,9 @@ module.exports.deleteProfile = async function(req, res){
 module.exports.getAllUser = async function (req, res){
     try {
         const allUser = await User.find();
-        const {filterUser,} = allUser.filter(users =>
+        const filterUser = allUser.filter(users =>
             users.role === "user"
         )
-        const {firstName,lastName,email,id,role} = filterUser
         res.status(200).send(filterUser);
     } catch (error) {
         res.status(401).json(error);
