@@ -32,7 +32,7 @@ app.use(bodyparser.json())
 //app.use(bcrypt())
 
 //connecting to a database
-mongoose.connect(process.env.DATADB, {useNewUrlParser: true})
+mongoose.connect("mongodb+srv://Godwin:geedev29@cluster0.wsaug.mongodb.net/neyin?retryWrites=true&w=majority", {useNewUrlParser: true})
     .then((result)=> success({message: "Database Connected", badge: true }))
     .catch((err) => error({message: "Unable to connect to database.", badge: true}))
 
