@@ -1,36 +1,97 @@
 const express = require("express");
 const getUser = require("../controller/controller");
 const verifyToken = require("../middleware/jwt");
-const {userAuth, adminAuth, superAdminAuth} = require("../middleware/roleAuthorization")
-
+const {
+  userAuth,
+  adminAuth,
+  superAdminAuth,
+} = require("../middleware/roleAuthorization");
+const passport = require("passport");
+const { paystackTransaction, paystackVerification } = require("../services/paystack");
 
 const router = express.Router();
 
 // get all user
-router.get("/getAllUser", getUser.getAllUser )
-//get document
-router.get("/getUser", getUser.getDocument)
+/**
+ *        @swagger
+ *        /getAllUser:
+ *        get:
+ *           description: get all the users
+ *           responses:
+ *               "200":
+ *                   description: response successful
+ */
 
+router.get("/getAllUser", getUser.getAllUser);
+//  get document
+/**
+ *  @swagger
+ *  /getUser:
+ *  get:
+ *     description: get all document of a user
+ *     response:
+ *         "200":
+ *             description: response successful
+ *     parameters:
+ *       - in: body
+ *         name: email
+ *         description: get the document of a particular user via the email
+ *         schema:
+ *           type: string
+ *           required:
+ *             - email
+ *           properties:
+ *             email:
+ *               type: string
+ *
+ */
+router.get("/getUser", getUser.getDocument);
 
 //user registration route
-router.post("/register" , getUser.register)
+/**
+ *  @swagger
+ *  /register:
+ *  get:
+ *     description: register a user
+ *     response:
+ *         "200":
+ *             description: response successful
+ *     parameters:
+ *       - in: body
+ *         name: user
+ *         description: register a particular user
+ *         schema:
+ *           type: object
+ *           required:
+ *             - user
+ *           properties:
+ *             firstName:
+ *               type: string
+ *             lastName:
+ *               type: string
+ *             email:
+ *               type: string
+ *             password:
+ *               type: string
+ */
+router.post("/register", getUser.register);
 // //Admin registration route
-router.post("/register-admin", getUser.adminRegister)
+router.post("/register-admin", getUser.adminRegister);
 // //super Admin registration route
-router.post("/register-superAdmin" , getUser.superAdminRegister)
+router.post("/register-superAdmin", getUser.superAdminRegister);
 
 // //user login route
-router.post("/login" , getUser.login)
+router.post("/login", getUser.login);
 //Admin login route
-router.post("/login-admin" , getUser.adminLogin)
+router.post("/login-admin", getUser.adminLogin);
 // //super admin login route
-router.post("/login-super-admin" , getUser.login)
-
-
+router.post("/login-super-admin", getUser.login);
+router.post("/paystack",paystackTransaction)
+router.post("/paystack/verify", paystackVerification)
 //patch
-router.patch("/update", getUser.updateProfile)
+router.patch("/update", getUser.updateProfile);
 //delete
-router.post("/delete" ,  getUser.deleteProfile)
+router.post("/delete", getUser.deleteProfile);
 
 // //profile
 // router.get("profile", profile)
@@ -44,6 +105,4 @@ router.post("/delete" ,  getUser.deleteProfile)
 // //Super Admin protected route
 // router.post("/super-admin-protected" , superAdminProfile)
 
-
-
-module.exports = router
+module.exports = router;

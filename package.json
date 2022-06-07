@@ -21,10 +21,12 @@
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.7",
+    "multer": "^1.4.4",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
+    "paystack": "^2.0.1",
     "swagger-jsdoc": "^6.2.0",
     "swagger-ui-express": "^4.3.0"
   }
