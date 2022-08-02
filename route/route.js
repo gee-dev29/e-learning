@@ -1,15 +1,27 @@
 const express = require("express");
 const getUser = require("../controller/controller");
 const verifyToken = require("../middleware/jwt");
-const {
-  userAuth,
-  adminAuth,
-  superAdminAuth,
-} = require("../middleware/roleAuthorization");
+// const {
+//   userAuth,
+//   adminAuth,
+//   superAdminAuth,
+// } = require("../middleware/roleAuthorization");
 const passport = require("passport");
-const { paystackTransaction, paystackVerification } = require("../services/paystack");
+const {
+  paystackTransaction,
+  paystackVerification,
+} = require("../services/paystackTransaction");
+const {
+  createCustomer,
+  updateCustomer,
+  fetchCustomer,
+  listCustomers,
+} = require("../services/paystackCustomer");
+// const {paystackSubscription} = require("../services/paystackSubscription")
 
 const router = express.Router();
+
+
 
 // get all user
 /**
@@ -86,8 +98,11 @@ router.post("/login", getUser.login);
 router.post("/login-admin", getUser.adminLogin);
 // //super admin login route
 router.post("/login-super-admin", getUser.login);
-router.post("/paystack",paystackTransaction)
-router.post("/paystack/verify", paystackVerification)
+router.post("/paystack", paystackTransaction);
+router.post("/customer/create", createCustomer);
+router.post("/customer/update", updateCustomer);
+router.get("/customer/fetch", fetchCustomer);
+router.get("/customer/list", listCustomers);
 //patch
 router.patch("/update", getUser.updateProfile);
 //delete

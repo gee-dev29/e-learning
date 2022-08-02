@@ -246,7 +246,7 @@ module.exports.updateProfile = async function (req, res) {
             console.log(err);
           }
           return res.send(data);
-          console.log("Data updated successfully.");
+          // console.log("Data updated successfully.");
         }
       );
     }
@@ -297,3 +297,19 @@ module.exports.upload = async function (req, res) {
     res.status(400).send(error);
   }
 };
+//course
+module.exports.course= async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+//paid courses
+module.exports.paidCourses = async (req,res)=>{
+  try {
+    
+  } catch (error) {
+    console.log(error.message)
+  }
+}

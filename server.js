@@ -1,6 +1,6 @@
 const express = require("express")
 const cors = require("cors")
-const bodyparser = require("body-parser")
+const bodyParser = require("body-parser")
 const multer = require("multer")
 const bcrypt = require("bcrypt")
 const mongoose = require("mongoose")
@@ -28,8 +28,8 @@ const app = express()
 
 //middleware
 app.use(cors())
-app.use(bodyparser.urlencoded({extended:false}));
-app.use(bodyparser.json())
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json())
 //app.use(bcrypt())
 
 //connecting to a database
